@@ -12,6 +12,11 @@
 
 
   <!-- Ajax -->
+  <form>
+    <button id="prevent" type="submit">送信</button>
+  </form>
+
+
   <div id="app">
     <button @click="btnClicked">Vueクリック</button>
     <!-- Vueで取得する方法 -->
@@ -50,10 +55,17 @@
 
     const clickEvent = document.getElementById('clickEvent');
     clickEvent.addEventListener('click', (e) => {
-      console.log('e');
+      console.log(e);
     })
 
+    const prevent = document.getElementById('prevent');
+    prevent.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log(e);
+    })
 
+    
+    
   </script>
 </body>
 </html>
