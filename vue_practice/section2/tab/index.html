@@ -14,18 +14,18 @@
   </style> -->
 </head>
 <body>
+
   <div id="app">
-    <!-- <div class="h1000"></div> -->
     <section class="tab">
       <ul class="tab__label">
         <li v-for="(item, id) in items" :key="item.id">
-          <a href="#" @click.prevent="activate(item.id)"
+          <a href="#" @click="activate(item.id)"
           :class="{active: active === item.id }">{{ item.title }}</a>
         </li>
       </ul>
 
       <div class="tab__content" v-show="active === 1">
-        サイトの情報。サイトの情報。
+        サイトの情報。サイトの情報
       </div>
       <div class="tab__content" v-show="active === 2">
         商品情報。商品情報。
@@ -34,8 +34,15 @@
         お問い合わせ。お問い合わせ。
       </div>
 
+
+
+
     </section>
   </div>
+
+
+
+
 
   <script>
     let app = new Vue({
