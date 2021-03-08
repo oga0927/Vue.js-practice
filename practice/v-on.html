@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.21"></script>
+</head>
+<body>
+  <button id="clickEvent" onClick="btnClicked()">クリックして！</button>
+
+
+  <!-- Ajax -->
+  <div id="app">
+    <button @click="btnClicked">Vueクリック</button>
+    <!-- Vueで取得する方法 -->
+    <button @click="btnClickedEvent">Eventクリック</button>
+    <button @click="btnClickedArgs(1)">Eventクリック</button>
+    <button @click="btnClickedArgsEvent(1,$event)">引数Eventクリック</button>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el:'#app',
+      data() {
+        return {
+
+        }
+      },
+      methods: {
+        btnClicked(e) {
+          console.log('v-on:click');
+        },
+        btnClickedEvent(e) {
+          console.log(e);
+        },
+        btnClickedArgs(int) {
+          console.log(int);
+        },
+        btnClickedArgsEvent(int, e) {
+          console.log(int, e);
+        }
+      }
+    })
+
+    function btnClicked() {
+      console.log('クリックされた');
+    }
+
+    const clickEvent = document.getElementById('clickEvent');
+    clickEvent.addEventListener('click', (e) => {
+      console.log('e');
+    })
+
+
+  </script>
+</body>
+</html>
