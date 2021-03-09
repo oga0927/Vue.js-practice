@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 <body>
+  <div id="app">
+
+  </div>
+
   <script>
     let obj = [
-      {id:1, title:"あああ"},
-      {id:2, title:"いいい"},
-      {id:3, title:"ううう"}
+      {id: 1,　title:'サービス内容'},
+      {id: 2,　title:'商品情報'},
+      {id: 3,　title:'お問い合わせ'}
     ];
-
-    //3つめの値を変更
-    obj.splice(2,1,{id:4, title:"おおお"});
-
+    // 3つめの値を変更
+    obj.splice(2,1,{id:4, title:'aaa'});
     console.log(obj);
 
-    //追加
-    obj.splice(3, 0, {id:5, title:"かかか"});
-
+    // 追加する場合
+    obj.splice(2,0,{id:5, title: 'rrrrr'});
     console.log(obj);
   </script>
-  
 </body>
 </html>
