@@ -1,50 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="app.css">
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  
   <style>
-  .target{
-    transition: opacity 1s;
-  }
-  .target.is-hidden{
-    opacity: 0;
-  }
- 
+    .target {
+      transition: opacity 1s;;
+    }
+    .target.is-hidden {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
   <button id="is-show">JS表示/非表示</button>
-  <div id="target" class="target">JS表示されています。</div>
-
+  <div id="target" class="target">JSが表示されています</div>
+  
   <div id="app">
     <button @click="isShow = !isShow">Vue表示/非表示</button>
+
     <transition name="fade">
-      <div v-show="isShow">Vue表示されています。</div>
-    </transition>
+      <div v-show="isShow">表示された</div>
+    </transition> 
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-<script>
-    let app = new Vue({
-      el : '#app',
-      data(){
-        return{
-          isShow: false
-        }
-      }
-    })
 
+  <script>
     const isShow = document.getElementById('is-show');
     const target = document.getElementById('target');
     
     isShow.addEventListener('click', () => {
-      target.classList.toggle('is-hidden');     
+      // classList.toggle(クラス名)でクラスの有無を切り替える
+      target.classList.toggle('is-hidden');
     })
-
+    
+    let app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          isShow: false
+        }
+      }
+    })
   </script>
-
 </body>
 </html>
