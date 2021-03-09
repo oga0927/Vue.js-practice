@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,28 +15,29 @@
       <div class="carousel__main">
         <transition name="active">
           <div class="carousel__main"
-              :key="images[active].id" 
-              v-show="active === images[active].id">
+            :key="images[active].id"
+            v-show="active === images[active].id">
             <img :src="images[active].img">
           </div>
         </transition>
       </div>
-      <div @click="prev" class="carousel__prev"><i class="fas fa-angle-left fa-5x"></i></div>
-      <div @click="next" class="carousel__next"><i class="fas fa-angle-right fa-5x"></i></div>
+      <div @click="prev" class="carousel__prev"><i class="fas fa-angle-left"></i></div>
+      <div @click="next" class="carousel__next"><i class="fas fa-angle-right"></i></div>
       <ul class="carousel__thumbnails">
-        <li v-for="(image, id) in images"
-          :key="image.id"
-          :class="{current: active === image.id}"
-          @click="current(image.id)">
+        <li v-for="(image,id) in images"
+        :key="image.id"
+        :class="{current: active === image.id }"
+        @click="current(image.id)">
         <img :src="image.img">
       </li>
       </ul>
     </section>
-  </div>  
+  </div>
+
   <script>
     let app = new Vue({
       el:'#app',
-      data(){
+      data() {
         return {
           active: 0,
           images: [
@@ -50,31 +51,33 @@
           ]
         }
       },
-    methods:{
-      current(id){
-        this.active = id
-      },
-      prev(){
-        if(this.active <= 0){
-          this.active = this.images.length - 1
-        } else {
-          this.active--
+      methods: {
+        current(id){
+          this.active = id
+        },
+        prev(){
+          if(this.active <= 0) {
+            this.active = this.images.length -1
+          } else {
+            this.active--
+          }
+        },
+        next() {
+          if(this.active >= this.images.length -1) {
+            this.active = 0
+          } else {
+            this.active
+          }
         }
       },
-      next(){
-        if(this.active >= this.images.length - 1){
-          this.active = 0
-        } else {
-          this.active++
-        }
+      mounted() {
+        // 関数内でthisは挙動が変わるので,別の変数で定義する
+        let that = this
+        setInterval(() => {
+        // 4秒おきに表示する　
+          that.next()
+        }, 4000);
       }
-    },
-    mounted(){
-      let that = this
-      setInterval(()=>{
-        that.next()
-      }, 4000)
-    }
     })
   </script>
 </body>
