@@ -20,7 +20,7 @@
         <!-- 順番は気にしないため:keyは不要 -->
       </ul>
     </p>
-    <form @submit="validate">
+    <form @submit.prevent="validate">
       氏名
       <input type="text" v-model="contact.yourName">
       <br>
@@ -58,7 +58,7 @@
       <input type="checkbox" value="クチコミ" v-model="contact.attracts">クチコミ
       <br>
       注意事項に同意する
-      <input type="checkbox" v-model="contact.caution"　required>
+      <input type="checkbox" v-model="contact.caution">
       <input type="submit" value="送信">
     </form>
   </div>
@@ -83,7 +83,20 @@
       },
       methods: {
         validate() {
-
+          this.errors = []
+          if(!this.contact.yourName.length > 20) {
+            this.errors.push('氏名は20文字以内で入力してください')
+          }
+          if(!this.contact.gender) {
+            this.errors.push('性別を入力してください')
+          }
+          if(!this.contact.caution) {
+            // !をつけることで『 true 』じゃなかったらの意味になる
+            this.errors.push('注意事項にチェックを入れてください')
+          }
+          if(!this.errors.length) {
+            console.log('送信可能です');
+          }
         }
       }
     })
