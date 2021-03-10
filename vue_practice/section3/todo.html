@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   <style>
-    [v-cloak]{
-      display:none;
+    [v-cloak] {
+      display: none;
     }
-    ul{
-      list-style:none;
+    ul {
+      list-style: none;
     }
-    .done{
+    .done {
       text-decoration: line-through;
     }
   </style>
@@ -22,32 +23,28 @@
     <button @click.prevent="addItem">追加</button>
     <input v-model="query">検索
 
+    <!-- リストはv-forを使う -->
     <ul v-cloak>
       <li v-for="(todo, index) in filteredList">
         <input type="checkbox" v-model="todo.isDone">
-        <span :class="{done: todo.isDone }">{{ todo.item }}</span>
+        <span :class="{ done: todo.isDone }">{{ todo.item }}</span>
         <button @click="deleteItem(index)">削除</button>
-      </li>
     </ul>
-
-
   </div><!-- 仮想DOM -->
 
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-  
   <script>
     let app = new Vue({
-      el:'#app',
-      data(){
+      el: '#app',
+      data() {
         return {
           newItem:'',
           todos: [],
           query:''
         }
       },
-      methods:{
-        addItem(){
+      methods: {
+        // methods: 再描画される度に実行される
+        addItem() {
           if(!this.newItem) return
           const todo = {
             item: this.newItem,
@@ -56,12 +53,15 @@
           this.todos.push(todo)
           this.newItem = ''
         },
-        deleteItem(index){
+        deleteItem(index) {
           this.todos.splice(index, 1)
         }
       },
-      computed:{
-        filteredList(){
+      computed: {
+        // computed:特定のデータが変更されるとき
+        filteredList() {
+          // 配列にフィルターをかける,フィルターはコールバック関数
+          // コールバック関数はthis.の挙動が変わる
           let that = this
           return this.todos.filter( todo => {
             return todo.item.indexOf(that.query) !== -1

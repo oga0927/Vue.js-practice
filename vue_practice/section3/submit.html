@@ -89,6 +89,7 @@
         }
       },
       methods: {
+        // methods:再描画されるたびに実行される
         validate() {
           this.errors = []
           if(!this.contact.yourName.length > 20) {
@@ -107,6 +108,7 @@
         }
       },
       computed: {
+        // computed:特定のデータを変更するとき
         yourName: {
           get() {
             // 必ずreturnが必要
