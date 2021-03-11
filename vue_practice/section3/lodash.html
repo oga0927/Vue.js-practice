@@ -7,17 +7,13 @@
 </head>
 <body>
   
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   <script>
-    // window.addEventListener('resize',()=>{
-    //   console.log('リサイズしたよ')
+    // addEventListener('resize', () => {
+    //   console.log('リアイズ成功');
     // })
-    window.addEventListener('resize', _.debounce(()=>{
-      console.log('debounceでリサイズ')
-    },3000))
-
-    window.addEventListener('resize', _.throttle(()=>{
-      console.log('throttleでリサイズ')
+    addEventListener('resize', _.throttle(()=> {
+      console.log('throttleでリサイズ');
     },3000))
   </script>
 </body>
