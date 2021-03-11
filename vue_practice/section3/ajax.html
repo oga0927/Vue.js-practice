@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,36 +7,43 @@
 </head>
 <body>
   <div id="app">
-    
+    <button @click = getDogImage>画像取得</button>
+    <img :src="dogImage">
   </div>
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>  
 
   <script>
     const url = 'https://dog.ceo/api/breeds/image/random'
-    const option = {
+    const options = {
       method: 'get'
     }
 
-    let app = new Vue({
-      el:'#app',
-      data(){
+    
+    let app = new Vue ({
+      el: '#app',
+      data() {
         return {
-          
+          dogImage: ''
         }
-      },
-      methods: {
-        // fetchでdogApiにアクセスして返ってきてから処理
-        async getDogImage() { 
-          // 非同期関数
-
-          // 関数の処理を待ってから実行
-          const response = await fetch(url,options)
-            .then( response => response.json() )
-            console.log(response); 
-        }
+    },
+    methods: {
+         // fetchでdogApiにアクセスして返ってきてから処理
+         // 非同期関数
+      async getDogImage() {
+        // 関数の処理を待ってから実行
+        const response = await fetch(url, options)
+        // 取得したデータを変数に入れる
+        .then( response => response.json() )
+        console.log(response.message);
+        this.dogImage = response.message
       }
-    })
+    },
+    created() {
+      this.getDogImage()
+    }
+  })
   </script>
   
 </body>
