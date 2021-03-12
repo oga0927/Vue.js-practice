@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,22 +17,24 @@
   
   <script>
     let myComponent = {
-      template:`<div>
-      あああ
-      <div v-show="isShow">表示</div>
-      </div>`,
-      data(){
-        return {
-          isShow: false
+      template: `<div>
+        こんにちは
+        <div v-show="isShow">表示</div>
+        </div>`,
+        data() {　　
+          return {
+            isShow: false
+          }
         }
-      }
     }
 
     let app = new Vue({
       el:'#app',
-      components:{
-        // 'my-component': myComponent
-        myComponent
+      // 作ったオブジェクトを設定する
+      components: {
+        //キーにはコンポーネントの名前で値は作った変数名//
+        // 'my-component': myComponent　
+        myComponent　
       },
       data(){
         return {
