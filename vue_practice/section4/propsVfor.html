@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .parent{
-      width:800px;
+    /* 親 */
+    .parent {
+      width: 800px;
       margin: 0 auto;
-      border: 1px red solid;
+      border: 1px solid red;
     }
-    .child{
+    .child {
       width: 30%;
       margin: 0 auto;
-      border: 1px blue solid;
+      border: solid blue;
     }
   </style>
 </head>
@@ -21,38 +22,46 @@
   
 
 <div id="app" class="parent">
+  <!-- 親コンポーネントで設定した配列 -->
   <array-test
   v-for="member in members"
   :key="member.name"
   :item="member"
-  class="child">
+  class="child"
+  >
   </array-test>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   
   <script>
     let arrayTest = {
-      props:{
-        item:{
-          type:Object
+      props: {
+        item: {
+          type: Object
         }
       },
-      template:`<div>
-      <p> {{ item.name }}</p> <!-- propsのオブジェクト名 -->
-    </div>`
-    }
-
+      // バッククオート``と<div></div>は必ず書く
+      template: `<div>
+        <p>{{ item.name }}</p> <!-- propsのオブジェクト名 -->
+        </div>`　
+      }
+    
+    // 親コンポーネント
     let app = new Vue({
       el:'#app',
-      components:{
+      // 作ったオブジェクトを設定する
+      components: {
+        //キーにはコンポーネント名、値は変数名//
         arrayTest
+        // キーと値が同じ場合、省略できる　
       },
       data(){
         return {
           members: [
-            {name: '久保'},
-            {name: '南野'},
-            {name: '堂安'}
+            // APIサーバーにはIDがない場合もある
+            {name: 'ミッキー'},
+            {name: 'ミニー'},
+            {name: 'ドナルド'},
           ]
         }
       }

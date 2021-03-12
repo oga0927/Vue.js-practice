@@ -23,7 +23,7 @@
 
 <div id="app" class="parent">
   <my-component title="テスト" class="child"></my-component>
-  <my-component class="child"></my-component>
+  <my-component :title="parentTitle" class="child"></my-component>
   <my-component disabled class="child"></my-component>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
@@ -53,6 +53,7 @@
         }
     }
 
+    // 親コンポーネント
     let app = new Vue({
       el:'#app',
       // 作ったオブジェクトを設定する
@@ -64,6 +65,7 @@
       },
       data(){
         return {
+          parentTitle: '親のタイトル'
         }
       }
     })
