@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   <title>Document</title>
   <style>
     .parent {
@@ -23,26 +24,22 @@
 
 <div id="app" class="parent">
   <child-component class="child">親の文字です</child-component>
-
-  <child-component class="child">
-    <child-component class="child"></child-component>
-  </child-component>
-
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+
   
   <script>
     let childComponent = {
-      template:`<div>
-      久保 <slot>南野</slot> 堂安</div>`
+      template: `<div>
+      ミッキー　ミニー　<slot>ドナルド</slot></div>`
     }
     let app = new Vue({
-      el:'#app',
-      data(){
+      el :'#app',
+      data() {
         return {
+          
         }
       },
-      components:{
+      components: {
         childComponent
       }
     })
