@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   <title>Document</title>
   <style>
     .parent {
@@ -20,45 +21,53 @@
 </head>
 <body>
   <div id="app" class="parent">
-      <custom-input
+    <custom-input
       @child-event="parentValue = $event"
-      class="child"></custom-input>
-
-      {{ parentValue }}
+      class="child">
+    </custom-input>
+    {{ parentValue }}
   </div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+
   
   <script>
+    // 子コンポーネント
     let customInput = {
-      template:`<div>
-      <input type="text" v-model="childParam">
-      </div>`,
-      data(){
-        return {
-          childValue:''
-        }
-      },
-      computed:{
-        childParam:{
-          get(){
-            return this.childValue
-          },
-          set( value ){
-            this.childValue = value
-            this.$emit('child-event', value)
+      template: `<div>
+        <input type="text" v-model="childParam">
+        </div>`,
+        data() {
+          return {
+            childValue: ''
+          }
+        },
+        computed: {
+          childParam: {
+            // 表示する側
+            get(){
+              // 必ずreturnが必要、data()の値を表示
+              return this.childValue
+            },
+            // セットする側、第一引数でvalueを設定、入力された値を受け取る
+            set( value ){
+              // 入力された値をデータに設定
+              this.childValue = value
+              // 入力された値を親に渡す
+              this.$emit('child-event', value)
+            }
           }
         }
-      }
     }
 
+    // 親コンポーネント
     let app = new Vue({
       el:'#app',
-      components:{
+      // コンポーネントの読み込み
+      components: {
         customInput
       },
-      data(){
+      data() {
         return {
-          parentValue:''
+          parentValue: ''
         }
       }
     })
