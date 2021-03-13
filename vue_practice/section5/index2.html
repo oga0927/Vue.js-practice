@@ -6,8 +6,11 @@
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.3.10/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <style>
-    .red-b{
-      border:red 1px solid;
+    .red-b {
+      border: 1px solid red;
+    }
+    .blue-b {
+      border: 1px solid blue;
     }
   </style>
 </head>
@@ -19,8 +22,8 @@
       </v-app-bar>
       <v-main>
         <v-container fluid>
-          <v-row>
-            <v-col class="red-b" cols="12" sm="6" md="4">あ</v-col>
+          <v-row class="blue-b">
+            <v-col class="my-5 red-b" cols="12" sm="6" md="4">あ</v-col>
             <v-col cols="12" md="4">い</v-col>
             <v-col cols="12" md="4">う</v-col>
           </v-row>
