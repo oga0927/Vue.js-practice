@@ -1,53 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   <title>Document</title>
   <style>
+    /* 親 */
     .parent {
-      width:800px;
-      margin:0 auto;
-      border: 1px red solid;
+      width: 800px;
+      margin: 0 auto;
+      border: 1px solid red;
     }
-    .child{
-      width:30%;
-      margin:0 auto;
-      border: 1px blue solid;
+    .child {
+      width: 30%;
+      margin: 0 auto;
+      border: solid blue;
     }
   </style>
 </head>
 <body>
   <div id="app" class="parent">
+    <!-- 作成したイベント名と親のメソッドを設定 -->
     <emit-test 
-      @custom-event="parentMethod"
-      class="child">
-    </emit-test>
+    @custom-event="parentMethod"
+    class="child">
+  </emit-test>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-  
+
   <script>
+    // 子コンポーネント
     let emitTest = {
       template:`<div>
-      <button @click="childMethod">子側のボタン</button>
+      <button @click="childMethod">子のボタン</button>
       </div>`,
-      methods:{
-        childMethod(){
-          this.$emit('custom-event', '子の値')
+      methods: {
+        // クリックしたらメソッドが呼び出される
+        childMethod() {
+          // 引数には必ずケバブケースで書く
+          this.$emit('custom-event', '子の値') 
         }
       }
     }
-
+    // 親コンポーネント
     let app = new Vue({
       el:'#app',
-      components:{
+      components: {
         emitTest
       },
-      data(){
+      data() {
         return {
         }
       },
-      methods:{
+      // 子からイベントを受けとったらメソッドが実行される
+      methods: {
+        // eを設定すると、子の値を受け取れる
         parentMethod(e){
           console.log(e)
         }
