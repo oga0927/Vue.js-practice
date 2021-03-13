@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   <title>Document</title>
   <style>
     .parent {
@@ -20,43 +21,49 @@
 </head>
 <body>
   <div id="app" class="parent">
+    <!-- 作成したイベント名と親のメソッドを設定 -->
     <!-- <custom-input
       :value="parentValue"
-      @input="parentValue = $event" 
-      class="child"></custom-input> -->
-      <custom-input
+      @input="parentValue = $event"
+      class="child">
+    </custom-input> -->
+    <custom-input
       v-model="parentValue"
-      class="child"></custom-input>
-
-      {{ parentValue }}
+      class="child">
+    </custom-input>
+    {{ parentValue }}
   </div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+
   
   <script>
+    // 子コンポーネント
     let customInput = {
-      props:{
-        value:{
+      // 親から子の通り道
+      props: {
+        value: {
           type: String
         }
       },
-      template:`<div>
-      <input :value="value" @input="childEvent">
-      </div>`,
-      methods:{
-        childEvent(e){
-          this.$emit('input', e.target.value)
+      template: `<div>
+        <input :value="value" @input="childEvent">
+        </div>`,
+        methods: {
+          childEvent(e) {
+            this.$emit('input',e.target.value)
+          }
         }
-      }
     }
 
+    // 親コンポーネント
     let app = new Vue({
       el:'#app',
-      components:{
+      // コンポーネントの読み込み
+      components: {
         customInput
       },
-      data(){
+      data() {
         return {
-          parentValue:''
+          parentValue: ''
         }
       }
     })
