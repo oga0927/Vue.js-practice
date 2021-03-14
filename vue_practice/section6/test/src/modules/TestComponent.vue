@@ -1,7 +1,7 @@
 <template>
   <div class="red-b">
-    <div>
-      SCSSのテスト
+    <div class="border__blue">
+      SCSSのテストです
     </div>
     テストです
     {{ testData }}
@@ -19,8 +19,15 @@ export default {
 }
 </script>
 
-<style scoped>
+// scssの読み込み
+<style scoped lang="scss">
   .red-b {
     color: red;
   }
+  .border {
+    &__blue {
+      border: 1px solid blue;
+    }
+  }
+  
 </style>
