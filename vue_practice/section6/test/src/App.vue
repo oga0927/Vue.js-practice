@@ -2,17 +2,21 @@
   <div id="app">
     <!-- 仮想DOMで書いていたところ -->
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome"/>
+    <TestComponent />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import TestComponent from './modules/TestComponent.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    TestComponent
   }
 }
 </script>
