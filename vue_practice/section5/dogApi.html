@@ -5,10 +5,15 @@
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.5.55/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.3.10/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <v-app>
+    <v-app v-cloak>
       <v-app-bar app>
         ヘッダー
       </v-app-bar>
@@ -20,8 +25,24 @@
               :key="index"
               cols="6" md="4">
               <v-btn
+              @click.prevent="fetchDogImage(index)"
               color="cyan"
-              dark>{{ dogType }}</v-btn>
+              dark>
+              {{ dogType }}
+            </v-btn>
+            </v-col>
+          </v-row>
+
+          <v-row v-show="isShow">
+            <v-col 
+            v-for="dogImage in dogImages"
+            :key="dogImage"
+            col="12" md="4" sm="4">
+              <v-card>
+                <v-img
+                :src="dogImage">
+              </v-img>
+              </v-card>
             </v-col>
           </v-row>
         </v-container>
@@ -42,7 +63,35 @@
       vuetify: new Vuetify(),
       data() {
         return {
-          dogTypes:['akita', 'beagle', 'pag', 'pekinese']
+          dogTypes:['akita', 'beagle', 'doberman', 'pekinese'],
+          dogUrl: '',
+          dogImages: '',
+          isShow: false
+        }
+      },
+      methods: {
+        async fetchDogImage(index) {
+          const that = this
+          this.dogUrl = `https://dog.ceo/api/breed/${this.dogTypes[index]}/images`
+          const response = await fetch(this.dogUrl, {method:'get'})
+          .then( response => {
+            if(response.ok) {
+              that.isShow = true
+              return response.json()
+            }
+            throw new Error('error')
+            .catch(e => console.log(e.message))
+          })
+          this.render(response)
+        },
+        render(response) {
+          if(response.message.length > 20) {
+            // メソッドチェーンで複数繋げる場合は.valueで取得する
+            this.dogImages = _(response.message)
+            .shuffle().slice(0, 20).value()
+          } else {
+            this.dogImages = _.shuffle(response.message)
+          }
         }
       }
     })
