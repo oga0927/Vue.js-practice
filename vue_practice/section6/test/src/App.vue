@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- 仮想DOMで書いていたところ -->
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
