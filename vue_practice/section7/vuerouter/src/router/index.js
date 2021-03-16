@@ -24,12 +24,12 @@ const routes = [
   {
     path: '/book',
     name: 'BookList',
-    component: 'BookList',
+    component: BookList,
   },
   {
-    path: 'book/:id',
+    path: '/book/:id',
     name: 'Book',
-    component: 'BookDetail',
+    component: BookDetail,
   }
 
 ]

@@ -1,16 +1,43 @@
 <template>
-  <div class="book">
-    aaaa
+  <div>
+    <h1>本の一覧</h1>
+  <ul>
+    <li 
+      @click="showBookDetail(book.id)" 
+      v-for="book in books" 
+      :key="book.id"
+      class="bookList">
+      {{book.title}}
+    </li>
+  </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'bool',
+  name: 'BookList',
+  data() {
+    return {
+      bookIndex: -1,
+      books:[
+        {id:1,title:'タイトル1',content: '本の内容1'},
+        {id:2,title:'タイトル2',content: '本の内容2'},
+        {id:3,title:'タイトル3',content: '本の内容3'},
+      ]
+    }
+  },
   methods: {
-    enterInfo() {
-      this.$router.push('./About.vue')
+    showBookDetail(id) {
+      this.bookIndex = id -1
+      console.log(this.bookIndex);
     }
   }
 }
 </script>
+
+<style scoped>
+  .bookList {
+    cursor: pointer;
+    list-style: none;
+  }
+</style>
