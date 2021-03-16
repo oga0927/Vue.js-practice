@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import BookList from '../views/BookList.vue'
 import BookDetail from '@/components/BookDetail.vue'
+// import NotFound from '@/components/Notfound.vue'
 
 // Vue.jsのプラグインをインストール
 Vue.use(VueRouter)
@@ -35,8 +36,14 @@ const routes = [
       title: route.params.title,
       content: route.params.content,
     })
-  }
-
+  },
+  // {
+  //   // ※の意味はpathにマッチしないもの全て
+  //   path:'*',
+  //   // redirect: '/',
+  //   name: 'NotFound',
+  //   component: NotFound
+  // }
 ]
 
 const router = new VueRouter({
