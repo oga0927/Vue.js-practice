@@ -7,36 +7,59 @@
       <router-link to="/user/profile">User</router-link> 
     </div>
     <div class="blue-b">
-      
-      <router-view/>
+      <transition name="fade" mode="out-in">
+        <router-view/>
+      </transition>
     </div>
     <router-view name="sub"/>
   </div>
 </template>
-<style>
-#app {
+
+
+
+<style lang="scss">
+
+.fade {
+    &-enter{
+      transform: translate(-100px, 0);
+      opacity: 0;
+      &-to {
+        opacity: 1;
+      }
+      &-active {
+        transition: all 1s 0s ease;
+      }
+    }
+    &-leave {
+      transform: translate(0,0);
+      opacity: 1;
+      &-to {
+        transform: translate(100px, 0);
+        opacity: 0;
+      }
+      &-active {
+        transition: all .5s 0s ease;
+      }
+    }
+  }
+  #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
+  }
+  #nav {
+    padding: 30px;
+    &:a {
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 20px;
+    } 
+  }
+  
+  #nav a.router-link-exact-active {
+    color: red;
+  }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  margin: 20px;
-}
-
-#nav a.router-link-exact-active {
-  color: red;
-}
-
-.blue-b {
-  border: 1px solid blue;
-}
 </style>
