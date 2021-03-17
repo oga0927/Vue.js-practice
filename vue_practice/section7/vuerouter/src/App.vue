@@ -3,12 +3,14 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about" >About</router-link> |
-      <router-link to="/book">BookList</router-link> 
+      <router-link to="/book">BookList</router-link> |
+      <router-link to="/user/profile">User</router-link> 
     </div>
-    <router-view/>
+    <div class="blue-b">
+      <router-view/>
+    </div>
   </div>
 </template>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -30,5 +32,9 @@
 
 #nav a.router-link-exact-active {
   color: red;
+}
+
+.blue-b {
+  border: 1px solid blue;
 }
 </style>

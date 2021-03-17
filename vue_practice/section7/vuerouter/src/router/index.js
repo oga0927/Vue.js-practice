@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import BookList from '../views/BookList.vue'
 import BookDetail from '@/components/BookDetail.vue'
+import User from '＠/views/User.vue'
+import UserProfile from '＠/components/UserProfile.vue'
+import UserPost from '＠/components/UserPost.vue'
 // import NotFound from '@/components/Notfound.vue'
 
 // Vue.jsのプラグインをインストール
@@ -37,6 +40,22 @@ const routes = [
       content: route.params.content,
     })
   },
+  {
+    path: '/user',
+    // ネストしたいときはnameを書くとエラーが起きる
+    // name: 'User',
+    component: User,
+    children:[
+      {
+        path: 'profile',
+        component: UserProfile
+      },
+      {
+        path: 'post',
+        component: UserPost
+      }
+    ]
+  }
   // {
   //   // ※の意味はpathにマッチしないもの全て
   //   path:'*',
