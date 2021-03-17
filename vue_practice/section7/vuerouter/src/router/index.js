@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import BookList from '../views/BookList.vue'
 import BookDetail from '@/components/BookDetail.vue'
-import User from '＠/views/User.vue'
-import UserProfile from '＠/components/UserProfile.vue'
-import UserPost from '＠/components/UserPost.vue'
+import User from '@/views/User.vue'
+import UserProfile from '@/components/UserProfile.vue'
+import UserPost from '@/components/UserPost.vue'
 // import NotFound from '@/components/Notfound.vue'
 
 // Vue.jsのプラグインをインストール
@@ -47,11 +47,11 @@ const routes = [
     component: User,
     children:[
       {
-        path: 'profile',
+        path:'profile',
         component: UserProfile
       },
       {
-        path: 'post',
+        path:'post',
         component: UserPost
       }
     ]

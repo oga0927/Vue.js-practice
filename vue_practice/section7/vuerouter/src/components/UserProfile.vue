@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    ユーザープロフィール
+  </div>
 </template>
 
 <script>
