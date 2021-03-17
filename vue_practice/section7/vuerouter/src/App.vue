@@ -7,8 +7,10 @@
       <router-link to="/user/profile">User</router-link> 
     </div>
     <div class="blue-b">
+      
       <router-view/>
     </div>
+    <router-view name="sub"/>
   </div>
 </template>
 <style>
