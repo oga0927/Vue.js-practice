@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
   <title>Document</title>
 </head>
 <body>
-  
   <div id="app">
     <h2>Books</h2>
     <div v-for="(book, n) in books">
       <p>
-        <span class="cat">{{ book }}</span>
+        <span class="book">{{ book }}</span>
         <button @click="removeBook(n)">Remove</button>
       </p>
     </div>
@@ -23,24 +24,31 @@
   
   </div>
   
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-  
   <script>
     const STORAGE_KEY = 'books'
     let app = new Vue({
-      el:'#app',
-      data(){
+      el: '#app',
+      data() {
         return {
           books: [],
           newBook: null
         }
       },
       mounted() {
-    if (localStorage.getItem(STORAGE_KEY)) {
+    if (localStorage.getItem('STORAGE_KEY')) {
       try {
-        this.books = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        this.cats = JSON.parse(localStorage.getItem('STORAGE_KEY'));
       } catch(e) {
-        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem('STORAGE_KEY');
+      }
+    }
+  },
+  mounted() {
+    if (localStorage.getItem('cats')) {
+      try {
+        this.books = JSON.parse(localStorage.getItem('cats'));
+      } catch(e) {
+        localStorage.removeItem('cats');
       }
     }
   },
@@ -61,10 +69,10 @@
     },
     saveBooks() {
       const parsed = JSON.stringify(this.books);
-      localStorage.setItem(STORAGE_KEY, parsed);
+      localStorage.setItem('STORAGE_KEY', parsed);
     }
   }
-    })
+})
   </script>
 </body>
 </html>
