@@ -7,7 +7,7 @@ import User from '@/views/User.vue'
 import UserProfile from '@/components/UserProfile.vue'
 import UserPost from '@/components/UserPost.vue'
 import HomeSub from '@/components/HomeSub.vue'
-import Login from '../views/Login.vue'
+
 
 // import NotFound from '@/components/Notfound.vue'
 
@@ -64,11 +64,7 @@ const routes = [
       }
     ]
   },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  }
+  
   // {
   //   // ※の意味はpathにマッチしないもの全て
   //   path:'*',
