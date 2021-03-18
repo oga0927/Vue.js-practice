@@ -7,6 +7,7 @@ import User from '@/views/User.vue'
 import UserProfile from '@/components/UserProfile.vue'
 import UserPost from '@/components/UserPost.vue'
 import HomeSub from '@/components/HomeSub.vue'
+import Login from '../views/Login.vue'
 
 // import NotFound from '@/components/Notfound.vue'
 
@@ -29,6 +30,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
+    // 遅延ローディングコンポーネント。必要な時だけ呼び出す
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
@@ -61,6 +63,11 @@ const routes = [
         component: UserPost
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
   // {
   //   // ※の意味はpathにマッチしないもの全て

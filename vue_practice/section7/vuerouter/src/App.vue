@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about" >About</router-link> |
       <router-link to="/book">BookList</router-link> |
-      <router-link to="/user/profile">User</router-link> 
+      <router-link to="/user/profile">User</router-link> |
+      <router-link to="/login">Login</router-link> 
     </div>
     <div class="blue-b">
       <transition name="fade" mode="out-in">
