@@ -1,5 +1,20 @@
 <template>
   <div>
-    <h1>Childrenページ</h1>
+    Children(子)
+    <GrandChildren/>
   </div>
 </template>
+
+<script>
+import GrandChildren from '@/components/GrandChildren'
+
+export default {
+  components: {
+    GrandChildren
+  }
+}
+</script>
+
+<style>
+
+</style>

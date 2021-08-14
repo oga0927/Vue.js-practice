@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
-import Children from '@/views/Children.vue'
+import Children from '@/views/Children'
 
 const routes = [
   {
