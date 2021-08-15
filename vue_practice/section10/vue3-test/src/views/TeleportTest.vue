@@ -1,18 +1,20 @@
 <template>
   <div>
-    Children(子)
-    <Grand-Children/>
+    TeleportTest
   </div>
+  <ModalButton/>
 </template>
 
 <script>
-import GrandChildren from '@/components/GrandChildren'
+import ModalButton from '@/components/ModalButton'
+
 export default {
   components: {
-    GrandChildren
+    ModalButton,
   }
 }
 </script>
 
 <style>
+
 </style>
