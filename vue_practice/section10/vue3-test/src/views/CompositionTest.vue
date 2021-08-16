@@ -8,10 +8,19 @@
   <p>reactiveToRefs: {{ auther[1] }}</p>
   <button @click="clickButton">クリック</button>
   <div><input v-model="search"></div>
+  <div><input v-model="searchEffect"></div>
 </template>
 
 <script>
-import { ref, reactive, toRefs, watch } from 'vue'
+import { 
+  ref, 
+  reactive, 
+  toRefs, 
+  watch, 
+  watchEffect, 
+  
+} 
+from 'vue'
 
 
 export default {
@@ -40,13 +49,19 @@ export default {
       console.log(`watch: ${search.value}`);
     })
 
+    const searchEffect = ref('')
+
+    watchEffect(() => {
+      console.log(`watchEffect: ${searchEffect.value}`);
+    })
     return {
       charactor,
       ThemaPark,
       charactorA,
       ...toRefs(charactorRefs),
       clickButton,
-      search
+      search,
+      searchEffect
     }
   }
 }
