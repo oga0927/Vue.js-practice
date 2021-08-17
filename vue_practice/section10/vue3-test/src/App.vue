@@ -6,7 +6,7 @@
     <router-link to="/teleport-test">Teleport</router-link> |
     <router-link to="/composition-test">Composition</router-link> |
     <router-link to="/props-emit-test">PropsEmitTest</router-link> |
-    <router-link to="/function-test">FunctionTest</router-link> |
+    <router-link to="/function-test">Function</router-link> |
     
   </div>
   <router-view 
