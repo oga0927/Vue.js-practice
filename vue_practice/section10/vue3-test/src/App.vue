@@ -8,13 +8,41 @@
     <router-link to="/props-emit-test">PropsEmitTest</router-link> |
     
   </div>
-  <router-view/>
+  <router-view :setupBooks="setupBooks" :dataBooks="dataBooks"/>
 </template>
 
 <script>
+import { reactive } from 'vue'
+
 export default {
+  setup() {
+    const setupBooks = reactive([
+      {
+          title:'setupのタイトル',
+          author: 'setup著者１'
+        },
+        {
+          title:'setupのタイトル2',
+          author: 'setup著者2'
+        },
+    ])
+
+    return {
+      setupBooks
+    }
+  },
   data() {
     return{
+      dataBooks:[
+        {
+          title:'dataのタイトル',
+          author: 'data著者１'
+        },
+        {
+          title:'dataのタイトル2',
+          author: 'data著者2'
+        },
+      ]
     }
   },
   provide() {
