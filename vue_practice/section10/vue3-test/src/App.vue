@@ -6,9 +6,15 @@
     <router-link to="/teleport-test">Teleport</router-link> |
     <router-link to="/composition-test">Composition</router-link> |
     <router-link to="/props-emit-test">PropsEmitTest</router-link> |
+    <router-link to="/function-test">FunctionTest</router-link> |
     
   </div>
-  <router-view :setupBooks="setupBooks" :dataBooks="dataBooks"/>
+  <router-view 
+    :setupBooks="setupBooks" 
+    :dataBooks="dataBooks"
+    @custom-event="parentMethods"
+  
+  />
 </template>
 
 <script>
@@ -43,6 +49,11 @@ export default {
           author: 'data著者2'
         },
       ]
+    }
+  },
+  methods: {
+    parentMethods(e) {
+      console.log(e);
     }
   },
   provide() {
