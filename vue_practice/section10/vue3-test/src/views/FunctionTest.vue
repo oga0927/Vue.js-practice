@@ -15,25 +15,6 @@
 import { reactive } from 'vue'
 import useCounter from '@/composables/useCounter'
 
-//script内で合成関数を作成する場合
-// const useCounter = item => {
-//   const increment = () => {
-//     item.amount++
-//   }
-//   const decrement = () => {
-//     item.amount--
-//   }
-  
-//   const totalPrice = computed(() => {
-//     return item.amount * item.price
-//   })
-
-//   return {
-//     increment,
-//     decrement,
-//     totalPrice
-//   }
-// } 
 
 export default {
   setup() {
@@ -43,7 +24,13 @@ export default {
       amount: '0'
     })
 
-    const { increment, decrement, totalPrice} = useCounter(item)
+    // 分割代入
+    const { 
+      increment, 
+      decrement, 
+      totalPrice} = useCounter(item)
+    
+    // returnで返すことでsetup関数とtemplateの中で使うことができる
     return {
       item,
       increment,
