@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forms</title>
+</head>
+<body>
+  <form action="">
+    
+    氏名: <input type="text" name="your_name" value=""> <br>
+    メールアドレス: <input type="email" required placeholder="メールアドレス"><br>
+    <input type="submit"　value="送信"><br>
+    <label for="gender_male">男性</label>
+    <input id="gender_male" type="radio" name="gender">
+    <label for="lady_male">女性</label>
+    <input id="lady_male" type="radio" name="gender"><br>
+    <select name="" id=""></select>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button></button>
+  </form>
+
+  <fieldset>
+    <legend>What is your favorite meal?</legend>
+    <ul>
+      <li>
+        <label for="soup"　id="eria">Soup</label>
+        <input
+          type="radio"
+          id="soup"
+          name="meal"
+          value="soup"
+          checked
+        >
+      </li>
+      <li>
+        <label for="curry">Curry</label>
+        <input
+          type="radio"
+          id="curry"
+          name="meal"
+          value="curry"
+        >
+      </li>
+      <li>
+        <label for="pizza">Pizza</label>
+        <input
+          type="radio"
+          id="pizza"
+          name="meal"
+          value="pizza"
+        >
+      </li>
+    </ul>
+  </fieldset>
+  
+  <input
+    type="password"
+    id="pwd"
+    name="pwd"
+  >
+</body>
+</html>
