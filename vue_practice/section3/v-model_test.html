@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todo</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <p v-if="errors.length">
+      <ul>
+        <!-- {{ error }}バインディングで表示 -->
+        <li class="error" v-for="error in errors">{{ error }}</li>
+      </ul>
+    </p>
+    <form @submit.prevent="validate">
+      氏名
+      <input type="text" v-model.trim="yourName"><!-- computedで監視している値 -->
+
+      <!-- 付けたいクラスと条件 -->
+      <p :class="{error: hasError.yourName}">{{ contact.yourName.length }} / 20</p>
+      <p v-show="hasError.yourName" class="error">20文字以内で入力してください</p>
+      <br>
+      電話番号
+      <input type="text" v-model.number="contact.tel">
+      <br>
+      メールアドレス
+      <input type="email" v-model="contact.email">
+      <br>
+      性別
+      <input type="radio" v-model="contact.gender" value="male">男性
+      <input type="radio" v-model="contact.gender" value="female">女性
+      <br>
+      年齢
+      <select v-model="contact.age">
+        <option disabled value="">年齢を選択してください</option>
+        <option>10代</option>
+        <option>20代</option>
+        <option>30代</option>
+        <option>40代</option>
+        <option>50代</option>
+      </select>
+      <br>
+      メッセージ
+      <textarea v-model="contact.message"></textarea>
+      <br>
+      このサイトを知った理由
+      <br>
+      <input type="checkbox" value="ポスター" v-model="contact.attracts">ポスター
+      <input type="checkbox" value="動画広告" v-model="contact.attracts">動画広告
+      <input type="checkbox" value="チラシ" v-model="contact.attracts">チラシ
+      <br>
+      確認事項にチェックをつけてください
+      <input type="checkbox" v-model="contact.caution">
+      <br>
+      <input type="submit"　value="送信">
+    </form> 
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          contact: {
+            yourName: '',
+            tel: '',
+            email: '',
+            gender: '',
+            age: '',
+            message: '',
+            attracts: [],
+            caution: false
+          },
+          // 初期化して空にする
+          errors:[],
+
+          // エラー判定をするオブジェクト
+          hasError: {
+            yourName: false
+          }
+        }
+      },
+      methods: {
+        // クリックしたらvalidateがよばれる
+        validate() {
+           // 追加、条件が満たされていたら配列から取り除く
+          // 初期化する必要がある
+          this.errors = []
+          if(!this.contact.yourName) {
+            this.errors.push('名前を入力してください')
+          }
+          if(!this.contact.gender) {
+            this.errors.push('性別を選択してください')
+          }
+          if(!this.contact.age) {
+            this.errors.push('年齢を選択してください')
+          }
+          if(!this.contact.caution) {
+            this.errors.push('確認事項にチェックを入れてください')
+          }
+          // 配列の数 値が入っていなかったら送信可能にする
+          if(!this.errors.length) {
+            console.log('送信可能です');
+          }
+        }
+      },
+      computed: {　//computedは基本的にはgetのみ
+        // dataの値を監視してdataの値が変わったら値を取得して処理実行してreturnで返す
+
+        yourName: {
+          get(){
+            // dataの中身をgetして返す
+            return this.contact.yourName
+          },
+          set(value){ //valueに入力値が入る
+            // console.log(value);
+            if(value.length <= 20) {
+              this.hasError.yourName = false
+            } else {
+              this.hasError.yourName = true
+            }
+            return this.contact.yourName = value
+          }, 
+        }
+      }
+    })
+  </script>
+</body>
+</html>
