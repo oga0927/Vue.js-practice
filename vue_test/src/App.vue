@@ -1,11 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-    {{ $store.state.count}}
+  <div>
+    <array-test :hoge="addMenu" @costom-event="parentEvent"></array-test>
   </div>
 </template>
 
+<script>
+import ArrayTest from '@/components/ArrayTest.vue'
+
+export default {
+  components: {
+    ArrayTest,
+  },
+  data() {
+    return {
+      addMenu: 'メニューをクリックしてください'
+    }
+  },
+  methods: {
+    parentEvent(e) {
+      console.log(e);
+    }
+  }
+  }
+</script>
+
+<style>
+
+</style>
