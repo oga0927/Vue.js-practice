@@ -21,8 +21,10 @@
   <div id="app" v-cloak>
     <input type="text" v-model="newItem">
     <button @click.prevent="addItem">追加</button>
+    <input v-model="query">検索
     <ul>
-      <li v-for="(todo, index) in todos">
+      <!-- in filteredListで配列にfilterをかけたものが表示される-->
+      <li v-for="(todo, index) in filteredList">
         <input type="checkbox" v-model="todo.isDone">
         <span :class="{done: todo.isDone}">{{ todo.item }}</span>
         <button @click="deleteItem(index)">削除</button>
@@ -38,7 +40,8 @@
       data() {
         return {
           newItem: '',
-          todos: []
+          todos: [],
+          query: ''
         }
       },
       methods: {
@@ -59,7 +62,15 @@
         }
       },
       computed: {
+        // queryが変わったら情報を検知して情報を変える
+        filteredList() { //filter関数はコールバックで設定する必要がある
+          let that = this
+          return this.todos.filter(todo => {
 
+            //文字列を検索して指定された値を返す
+            return todo.item.indexOf(that.query) !== -1
+          })
+        }
       }
     })
   </script>
